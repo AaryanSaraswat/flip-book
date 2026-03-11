@@ -1,0 +1,6 @@
+/* minimal reset — app styles live in styles.css */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

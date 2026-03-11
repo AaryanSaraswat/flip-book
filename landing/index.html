@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coming Soon</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0f0f1a;
+      color: #e0e0e0;
+      overflow: hidden;
+    }
+
+    /* animated gradient backdrop */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 20%, rgba(99,102,241,.15) 0%, transparent 50%),
+                  radial-gradient(ellipse at 70% 80%, rgba(236,72,153,.10) 0%, transparent 50%);
+      animation: drift 12s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+    @keyframes drift {
+      0%   { transform: scale(1)   translate(0, 0); }
+      100% { transform: scale(1.1) translate(-30px, 20px); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+      max-width: 600px;
+    }
+
+    /* gear icon */
+    .icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 2rem;
+      animation: spin 6s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .icon svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: #6366f1;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #818cf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: 1.1rem;
+      color: #9ca3af;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    /* progress bar */
+    .progress-track {
+      width: 280px;
+      height: 4px;
+      margin: 0 auto 2.5rem;
+      background: rgba(255,255,255,0.08);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      width: 45%;
+      height: 100%;
+      background: linear-gradient(90deg, #6366f1, #c084fc);
+      border-radius: 2px;
+      animation: load 2.5s ease-in-out infinite;
+    }
+    @keyframes load {
+      0%   { transform: translateX(-100%); }
+      50%  { transform: translateX(180%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .status {
+      display: inline-block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #6366f1;
+      border: 1px solid rgba(99,102,241,.3);
+      padding: 0.4rem 1.2rem;
+      border-radius: 999px;
+      margin-bottom: 2rem;
+    }
+
+    .contact {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+    .contact a {
+      color: #818cf8;
+      text-decoration: none;
+    }
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    /* floating dots decoration */
+    .dot {
+      position: fixed;
+      border-radius: 50%;
+      background: rgba(99,102,241, 0.12);
+      z-index: 0;
+    }
+    .dot:nth-child(1) { width:180px; height:180px; top:10%;  left:5%;  animation: float 8s  ease-in-out infinite; }
+    .dot:nth-child(2) { width:120px; height:120px; top:60%;  right:8%; animation: float 10s ease-in-out infinite reverse; }
+    .dot:nth-child(3) { width: 90px; height: 90px; bottom:15%;left:50%;animation: float 7s  ease-in-out infinite 1s; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-25px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- decorative floating dots -->
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+
+  <div class="container">
+    <!-- rotating gear icon (inline SVG) -->
+    <div class="icon">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33
+                 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1.08-1.51
+                 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82
+                 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1.08
+                 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9
+                 a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51
+                 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9
+                 a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1.08Z"/>
+      </svg>
+    </div>
+
+    <span class="status">Under Construction</span>
+
+    <h1>Something Great Is Coming</h1>
+    <p class="tagline">
+      We're working hard to bring you an amazing experience.<br />
+      Stay tuned — we'll be live soon.
+    </p>
+
+    <!-- animated progress bar -->
+    <div class="progress-track">
+      <div class="progress-bar"></div>
+    </div>
+
+    <p class="contact">
+      Questions? Reach out at
+      <a href="mailto:hello@example.com">hello@example.com</a>
+    </p>
+  </div>
+
+</body>
+</html>

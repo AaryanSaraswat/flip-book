@@ -1,0 +1,190 @@
+/* ---- reset / base ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* ---- app shell ---- */
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- wooden table surface ---- */
+.table-surface {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* layered wood-grain effect using CSS gradients */
+  background-color: #6b3a20;
+  background-image:
+    /* fine horizontal grain lines */
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 18px,
+      rgba(0, 0, 0, 0.04) 18px,
+      rgba(0, 0, 0, 0.04) 19px
+    ),
+    /* wider colour variation bands */
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 200, 140, 0.08) 0px,
+      transparent 4px,
+      transparent 12px,
+      rgba(90, 40, 10, 0.10) 16px,
+      transparent 20px,
+      transparent 40px
+    ),
+    /* subtle vertical streaks */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 60px,
+      rgba(0, 0, 0, 0.05) 60px,
+      rgba(0, 0, 0, 0.05) 62px
+    ),
+    /* base warm gradient */
+    linear-gradient(
+      160deg,
+      #7a4528 0%,
+      #5c2e12 40%,
+      #6b3a20 60%,
+      #8b5535 100%
+    );
+
+  /* slight vignette to add depth */
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.35);
+}
+
+/* ---- flipbook container (inside the table) ---- */
+.flipbook-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* ---- stage: arrows + book side by side ---- */
+.book-stage {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+}
+
+/* ---- navigation arrows ---- */
+.nav-arrow {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.25rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s, transform 0.15s;
+}
+
+.nav-arrow:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.nav-arrow:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+/* ---- flip page ---- */
+.flip-page {
+  background: #ffffff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ---- per-page loader ---- */
+.page-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: #fafafa;
+  color: #999;
+  font-size: 0.85rem;
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid #e0e0e0;
+  border-top-color: #4361ee;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---- page indicator ---- */
+.page-indicator {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* ---- initial loading / error text ---- */
+.loading-text {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ---- responsive ---- */
+@media (max-width: 600px) {
+  .book-stage {
+    gap: 0.5rem;
+  }
+
+  .nav-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .page-indicator {
+    font-size: 0.8rem;
+  }
+}
